@@ -1,0 +1,24 @@
+{
+  "name": "proyecto-agrinsa-backend",
+  "version": "1.0.0",
+  "description": "Backend del proyecto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateog147/Proyecto-Agrinsa-Backend.git"
+  },
+  "keywords": [
+    "Node",
+    "mintic"
+  ],
+  "author": "Mateo Gutierrez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mateog147/Proyecto-Agrinsa-Backend/issues"
+  },
+  "homepage": "https://github.com/mateog147/Proyecto-Agrinsa-Backend#readme"
+}
