@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/mateog147/Proyecto-Agrinsa-Backend/issues"
   },
-  "homepage": "https://github.com/mateog147/Proyecto-Agrinsa-Backend#readme"
+  "homepage": "https://github.com/mateog147/Proyecto-Agrinsa-Backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
