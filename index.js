@@ -14,8 +14,12 @@ app.get('/', (req,res)=>{
     res.send('HOME');
 });
 
+app.get('/login', (req,res)=>{
+    res.send('LOGIN');
+});
+
 routerApi(app);
-//SIEMPRE DESPUES DEL ROUTTTIINNNS
+//SIEMPRE DESPUES DEL ROUTING
 
 app.listen(port, ()=>{
     console.log("Corriendo en el puerto: ",port);
