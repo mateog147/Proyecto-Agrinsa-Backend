@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 const userSchema = require('../models/usuario');
 //Crear un usuario
-router.post('/usuarios', (req,res)=>{
+router.post('/usuarios',async (req,res)=>{
   const datos = req.body;
   const hash = await bcrypt.hash(data.password,10);
   const newUser = userSchema({
