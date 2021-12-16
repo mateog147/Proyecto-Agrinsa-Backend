@@ -1,57 +1,31 @@
 const express = require('express');
 const router = express.Router();
 
-const cultivoSchema = require('../models/cultivo.model')
+const cultivoSchema = require('../models/cultivo')
 
 //instancio  un servicio 
 const service= new CultivosService();
 //cultivos
 router.get('/',async (req,res)=>{
-    const cultivos = [ 
-            {'id': 1,
-            'nombre': 'papas',
-            'descripción':'papa nevada '
-            },
-            {'id': 2,
-            'nombre': 'arroz',
-            'descripción':'arroz comun'
-            },
-            {'id': 3,
-            'nombre': 'maiz',
-            'descripción':'maiz comun  '
-            },
-        ];
-    res.json(cultivos)
+    try {
+        const cultivos = await cultivoSchema.find();
+        res.json(cultivos)
+    } catch (error) {
+        res.json({message:err})
+    }
 });
 
-
-router.get('/',async (req,res)=>{
-    const cultivos = [ 
-            {'id': 1,
-            'nombre': 'papas',
-            'descripción':'papa nevada '
-            },
-            {'id': 2,
-            'nombre': 'arroz',
-            'descripción':'arroz comun'
-            },
-            {'id': 3,
-            'nombre': 'maiz',
-            'descripción':'maiz comun  '
-            },
-        ];
-    res.json(cultivos)
-});
-
+//obtener un cultivo por ID
 router.get('/:id',async (req,res)=>{
-    const cultivo =  
-            {'id': 1,
-            'nombre': 'papas',
-            'descripción':'papa nevada '
-            };
-    res.json(cultivo)
+    try {
+        const { id }=req.params;
+        const cultivo = await cultivoSchema.findById(id);
+        res.json(cultivo);
+    } catch (error) {
+        res.json({message:error});
+    }
 });
-
+//crear un cultivo
 router.post('/',async (req, res)=>{
     try {
         const nuevoCultivo = cultivoSchema(req.body);
@@ -60,7 +34,17 @@ router.post('/',async (req, res)=>{
     } catch (error) {
         res.json({message:error})
     }
-    
 });
 
+//modificar un cultivo 
+router.put('/:id',async (req,res)=>{
+    try {
+        const { id }=req.params;
+        const {nombre, descripcion} = (req.body);
+        const cultivo = await cultivoSchema.updateOne({_id:id},{$set:{nombre, descripcion}});
+        res.json(user);
+    } catch (error) {
+        res.json({message:error});
+    }
+});
 module.exports = router;
