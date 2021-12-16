@@ -8,9 +8,9 @@ const cultivossRouter = require('./cultivos.router');
 
 function routerApi(app){
   const router = express.Router();
-  app.use('/dashboard', router);
-  router.get('/', (req,res)=>{
-    res.send('DASHBOARD');
+  app.use('/api', router);
+  router.get('/login', (req,res)=>{
+    res.send('');
   });
     router.use('/usuarios', usuariosRouter);
     router.use('/predios', prediosRouter);
