@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const cultivoSchema = require('../models/cultivo.model')
+
+//instancio  un servicio 
+const service= new CultivosService();
 //cultivos
 router.get('/',async (req,res)=>{
     const cultivos = [ 
@@ -49,7 +53,14 @@ router.get('/:id',async (req,res)=>{
 });
 
 router.post('/',async (req, res)=>{
-    console.log('post');
+    try {
+        const nuevoCultivo = cultivoSchema(req.body);
+        await nuevoCultivo.save();
+        res.status(201).json(nuevoCultivo);
+    } catch (error) {
+        res.json({message:error})
+    }
+    
 });
 
 module.exports = router;
