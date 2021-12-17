@@ -3,8 +3,7 @@ const router = express.Router();
 
 const cultivoSchema = require('../models/cultivo')
 
-//instancio  un servicio 
-const service= new CultivosService();
+
 //cultivos
 router.get('/',async (req,res)=>{
     try {

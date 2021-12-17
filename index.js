@@ -24,6 +24,7 @@ require('./config/database');
 
 //middlewares
 app.use(express.json());
+app.use(express.static())
 app.use("/doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
 
