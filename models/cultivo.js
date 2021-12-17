@@ -6,7 +6,7 @@ const cultivoSchema=mongoose.Schema({
         required:true
     },
     descripcion:{
-        type:Number,
+        type:String,
         required:true
     },
 });
