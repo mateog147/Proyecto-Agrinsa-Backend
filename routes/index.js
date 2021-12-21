@@ -1,19 +1,13 @@
 const express = require('express');
-
+const router = express.Router();
 const usuariosRouter = require('./usuarios.router');
+const loginRouter = require('./login.router');
 const prediosRouter = require('./predios.router');
-const cultivossRouter = require('./cultivos.router');
+const cultivosRouter = require('./cultivos.router');
 
+router.use('/Login', loginRouter);
+router.use('/Usuarios', usuariosRouter);
+router.use('/Predios' , prediosRouter);
+router.use('/Cultivos', cultivosRouter);
 
-function routerApi(app){
-  const router = express.Router();
-  app.use('/dashboard', router);
-  router.get('/', (req,res)=>{
-    res.send('DASHBOARD');
-  });
-    router.use('/usuarios', usuariosRouter);
-    router.use('/predios', prediosRouter);
-    router.use('/cultivos', cultivossRouter);
-}
-
-module.exports=routerApi;
+module.exports=router;

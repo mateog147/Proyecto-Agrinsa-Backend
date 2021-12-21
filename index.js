@@ -1,41 +1,22 @@
+require('./config/database');
 const express = require('express');
-const routerApi = require('./routes');
-const path = require('path');
-
-//Swagger
-const swaggerUI = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerSpec = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "Node MongoDB API",
-            version: "1.0.0"
-        },
-    },
-    apis: [`${path.join(__dirname, "./routes*.js")}`]
-};
+const bodyParser = require('body-parser');
+const routingModule = require('./routes/index');
 
 //settings
 const app = express();
 const port = process.env.PORT || 3006;
-const IP = "192.168.1.4"; // esta es la ip de mi pc
-require('./config/database');
+const IP = "localhost"; // esta es la ip de mi pc
 
 //middlewares
-app.use(express.json());
-app.use("/doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.send('HOME');
+//routes
+app.get('/',(req, res) => {
+    res.send("API Home");
 });
 
-app.get('/login', (req, res) => {
-    res.send('LOGIN');
-});
-
-routerApi(app);
-//SIEMPRE DESPUES DEL ROUTING
+app.use('/api',routingModule);
 
 app.listen(port, () => {
     console.log("Corriendo en el puerto: ", port);
